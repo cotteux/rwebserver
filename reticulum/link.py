@@ -31,12 +31,12 @@ def on_packet_received(data, packet):
     try:
         # Pass raw data to handler
         response_data = _data_handler(data)
-        
+
         # Send response back if provided
         if response_data:
-            response_packet = RNS.Packet(packet.link, response_data)
-            response_packet.send()
-            
+            # Send response as Resource (handles both small and large data)
+            resource = RNS.Resource(response_data, packet.link)
+
     except Exception as e:
         print(f"✗ Link error: {e}")
 
