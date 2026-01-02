@@ -89,17 +89,23 @@ def main():
             sys.exit(1)
             
         print("✓ Link established!")
-        
-        # Set up callback to receive responses
-        def client_packet_received(data, packet):
-            print(f"✓ Received HTTP response ({len(data)} bytes):")
-            try:
-                response_text = data.decode('utf-8')
-                print(response_text)
-            except UnicodeDecodeError:
-                print(f"Binary data: {data}")
-            
-        link.set_packet_callback(client_packet_received)
+
+        # Set up callback to receive responses via Resources
+        def client_resource_concluded(resource):
+            if resource.status == RNS.Resource.COMPLETE:
+                data = resource.data.read()
+                print(f"✓ Received HTTP response ({len(data)} bytes):")
+                try:
+                    response_text = data.decode('utf-8')
+                    print(response_text)
+                except UnicodeDecodeError:
+                    print(f"Binary data ({len(data)} bytes)")
+            else:
+                print(f"✗ Resource transfer failed with status: {resource.status}")
+
+        # Auto-accept incoming resources and set callback
+        link.set_resource_strategy(RNS.Link.ACCEPT_ALL)
+        link.set_resource_concluded_callback(client_resource_concluded)
         
         # Send HTTP request like curl
         http_request = f"{method} {path} HTTP/1.1\r\nHost: {destination_hash}\r\nUser-Agent: MeshCurl/1.0\r\nAccept: text/html,*/*\r\n\r\n"
