@@ -35,7 +35,7 @@ def on_packet_received(data, packet):
         # Send response back if provided
         if response_data:
             # Send response as Resource (handles both small and large data)
-            resource = RNS.Resource(response_data, packet.link)
+            resource = RNS.Resource(response_data, packet.link,auto_compress=True)
 
     except Exception as e:
         print(f"✗ Link error: {e}")
