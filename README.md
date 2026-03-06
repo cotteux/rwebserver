@@ -30,7 +30,7 @@ A lightweight HTTP/1.1 web server that runs over [Reticulum](https://reticulum.n
 
 2. **Clone the Repository**
    ```bash
-   git clone https://github.com/guyroyse/rserver.git
+   git clone https://github.com/cotteux/rwebserver.git
    cd rserver
    ```
 
