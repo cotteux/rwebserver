@@ -157,9 +157,16 @@ python meshcurl.py a1b2c3d4e5f6789abcdef0123456789abcdef01234567 -X POST /api/da
 - `-v` - Verbose output showing request and response headers
 - `-X METHOD` - Specify HTTP method (GET, POST, etc.)
 
+## Browsing with RetiHtmlProxy
+
+Using your browser and add http://<hash> to connect to rserver and rwebserver.
+[RetiHtmlProxy](https://github.com/cotteux/RetiHtmlProxy)
+
+
 ## Browsing with MeshBrowser
 
 For a full graphical browsing experience, check out [MeshBrowser](https://github.com/guyroyse/mesh-browser) - a web browser designed specifically for Reticulum networks. MeshBrowser provides a familiar browser interface for accessing RServer and other Reticulum web services.
+
 
 ## How Files Are Served
 
